@@ -1,4 +1,4 @@
-# SocialMedia-AutoBot v2.0
+# SocialMedia-AutoBot v3.0
 
 🤖 **多平台社交媒体自动化运营 Telegram Bot** — 支持 Instagram、Twitter/X、TikTok 三大平台的一站式内容管理。
 
