@@ -2,9 +2,14 @@
 requires = ["setuptools>=68.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["app*"]
+exclude = ["tests*", "data*"]
+
 [project]
 name = "socialmedia-autobot"
-version = "2.0.0"
+version = "4.0.0"
 description = "Multi-platform social media automation via Telegram Bot - Instagram, Twitter/X, TikTok"
 readme = "README.md"
 license = {text = "MIT"}

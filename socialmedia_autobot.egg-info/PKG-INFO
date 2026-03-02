@@ -1,4 +1,19 @@
-# SocialMedia-AutoBot v4.0
+Metadata-Version: 2.4
+Name: socialmedia-autobot
+Version: 3.0.0
+Summary: Multi-platform social media automation via Telegram Bot - Instagram, Twitter/X, TikTok
+License: MIT
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: python-telegram-bot>=21.0
+Requires-Dist: requests>=2.31.0
+Provides-Extra: dev
+Requires-Dist: pytest>=8.0; extra == "dev"
+Requires-Dist: pytest-cov>=5.0; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.23; extra == "dev"
+Requires-Dist: ruff>=0.3.0; extra == "dev"
+
+# SocialMedia-AutoBot v3.0
 
 🤖 **多平台社交媒体自动化运营 Telegram Bot** — 支持 Instagram、Twitter/X、TikTok 三大平台的一站式内容管理。
 
@@ -109,43 +124,3 @@ make lint           # 代码检查
 ## 📄 License
 
 MIT
-
-## 🛡️ v4.0 新增：内容审核引擎
-
-### 功能特性
-- **8类违规检测**
-  - 政治敏感 / 色情低俗 / 暴力血腥 / 违禁品
-  - 广告法违规 / 平台规则 / 垃圾信息 / 个人信息泄露
-- **风险评分系统** (0-100分，5级风险等级)
-- **智能建议生成** (分类建议+平台特定提示)
-- **自动文本清理** (低风险违规自动修正)
-- **批量审核** + **统计分析**
-
-### 使用示例
-```python
-from app.content_moderator import ContentModerator
-
-moderator = ContentModerator()
-
-# 单条审核
-result = moderator.moderate("这是最佳产品，加微信购买", platform="instagram")
-print(f"安全: {result.is_safe}, 风险分: {result.risk_score}")
-print(f"建议: {result.suggestions}")
-print(f"清理后: {result.cleaned_text}")
-
-# 批量审核
-texts = ["文案1", "文案2", "文案3"]
-results = moderator.batch_moderate(texts, platform="tiktok")
-stats = moderator.get_stats(results)
-print(f"安全率: {stats['safe_rate']:.1%}")
-```
-
-### TG Bot 命令
-| 命令 | 说明 |
-|------|------|
-| `/moderate <文本>` | 审核单条内容 |
-| `/moderate_batch` | 批量审核 (发送多行文本) |
-
-### 测试覆盖
-- 22项测试 (敏感词/合规/风险评分/建议生成/清理/统计)
-- 100% 通过率
