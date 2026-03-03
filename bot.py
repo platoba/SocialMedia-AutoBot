@@ -322,3 +322,70 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# ============ 危机监测功能 ============
+from app.crisis_monitor import CrisisMonitor
+
+crisis_monitor = CrisisMonitor(brand_keywords=['YourBrand'])
+
+@bot.message_handler(commands=['crisis'])
+async def handle_crisis_command(message):
+    """危机监测报告"""
+    try:
+        report = crisis_monitor.get_crisis_report(hours=24)
+        
+        response = "🚨 **24小时危机监测报告**\n\n"
+        response += f"📊 总警报数: {report['total_alerts']}\n\n"
+        response += "**按严重程度:**\n"
+        response += f"🔴 Critical: {report['by_severity']['critical']}\n"
+        response += f"🟠 High: {report['by_severity']['high']}\n"
+        response += f"🟡 Medium: {report['by_severity']['medium']}\n"
+        response += f"🟢 Low: {report['by_severity']['low']}\n\n"
+        
+        if report['top_keywords']:
+            response += "**高频负面关键词:**\n"
+            for kw, count in report['top_keywords'][:5]:
+                response += f"• {kw}: {count}次\n"
+        
+        if report['most_critical']:
+            response += "\n**最严重警报:**\n"
+            for alert in report['most_critical'][:3]:
+                response += f"\n🚨 {alert.platform} - {alert.severity}\n"
+                response += f"   {alert.content[:100]}...\n"
+                response += f"   互动: {alert.engagement} | 情感: {alert.sentiment_score:.2f}\n"
+        
+        await bot.reply_to(message, response, parse_mode='Markdown')
+    
+    except Exception as e:
+        await bot.reply_to(message, f"❌ 错误: {str(e)}")
+
+@bot.message_handler(commands=['monitor'])
+async def handle_monitor_command(message):
+    """启动实时监控"""
+    try:
+        args = message.text.split()[1:]
+        if not args:
+            await bot.reply_to(message, "用法: /monitor <品牌关键词>")
+            return
+        
+        keyword = ' '.join(args)
+        
+        # 这里应该集成实际的社交媒体API
+        # 示例：监控Twitter提及
+        mentions = []  # 从API获取
+        
+        alerts = await crisis_monitor.monitor_mentions('twitter', mentions)
+        
+        if alerts:
+            response = f"🚨 检测到 {len(alerts)} 条警报!\n\n"
+            for alert in alerts[:5]:
+                response += f"**{alert.severity.upper()}** - {alert.platform}\n"
+                response += f"{alert.content[:100]}...\n"
+                response += f"建议: {', '.join(crisis_monitor.get_response_suggestions(alert)[:2])}\n\n"
+        else:
+            response = f"✅ 未检测到危机信号 (关键词: {keyword})"
+        
+        await bot.reply_to(message, response, parse_mode='Markdown')
+    
+    except Exception as e:
+        await bot.reply_to(message, f"❌ 错误: {str(e)}")
