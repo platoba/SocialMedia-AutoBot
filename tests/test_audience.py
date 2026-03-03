@@ -1,14 +1,12 @@
 """Tests for Audience Segmentation & Targeting Engine."""
 
 import os
-import json
 import pytest
 import tempfile
 from app.audience import (
     AudienceEngine,
     FollowerProfile,
     AudienceSegment,
-    AudienceInsights,
     SegmentType,
     EngagementTier,
     LifecycleStage,

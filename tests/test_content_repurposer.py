@@ -1,6 +1,5 @@
 """Tests for Content Repurposer module."""
 
-import pytest
 from app.content_repurposer import (
     Platform,
     RepurposedContent,

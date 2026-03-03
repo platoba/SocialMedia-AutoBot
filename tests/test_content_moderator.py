@@ -6,8 +6,6 @@ from app.content_moderator import (
     ContentModerator,
     RiskLevel,
     ViolationType,
-    Violation,
-    ModerationResult,
 )
 
 

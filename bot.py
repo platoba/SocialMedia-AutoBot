@@ -5,9 +5,7 @@ Instagram/TikTok/Twitter 社媒自动化工具
 """
 
 import os
-import re
 import time
-import json
 import random
 import requests
 from datetime import datetime
@@ -204,7 +202,7 @@ def suggest_hashtags(niche):
         if key in niche_lower:
             return f"🏷️ {niche} 推荐标签:\n\n" + " ".join(tags)
     all_tags = [t for tags in TRENDING_HASHTAGS.values() for t in tags]
-    return f"🏷️ 热门标签:\n\n" + " ".join(random.sample(all_tags, min(10, len(all_tags))))
+    return "🏷️ 热门标签:\n\n" + " ".join(random.sample(all_tags, min(10, len(all_tags))))
 
 
 # ── 命令处理 ──────────────────────────────────────────────
@@ -282,7 +280,7 @@ def handle(chat_id, msg_id, text):
 
 def main():
     print(f"\n{'='*50}")
-    print(f"  SocialMedia AutoBot")
+    print("  SocialMedia AutoBot")
     platforms = []
     if IG_ACCESS_TOKEN: platforms.append("Instagram")
     if TW_BEARER_TOKEN: platforms.append("Twitter")

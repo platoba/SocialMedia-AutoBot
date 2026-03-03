@@ -11,10 +11,8 @@ Supported conversions:
 """
 
 import re
-import textwrap
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Optional
 
 
 class Platform(str, Enum):
@@ -389,7 +387,7 @@ def _build_suggestions(source: Platform, target: Platform, text: str) -> list[st
 
     elif target == Platform.TWITTER:
         if len(text) > 280:
-            suggestions.append(f"内容已自动拆分为Thread")
+            suggestions.append("内容已自动拆分为Thread")
         suggestions.append("添加一张信息图会提升RT率2-3倍")
         suggestions.append("考虑使用Twitter Poll增加互动")
 

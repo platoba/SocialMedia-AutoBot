@@ -96,7 +96,7 @@ class TwitterClient:
         """Get trending topics (v1.1 endpoint, requires elevated access)."""
         try:
             r = self.session.get(
-                f"https://api.twitter.com/1.1/trends/place.json",
+                "https://api.twitter.com/1.1/trends/place.json",
                 params={"id": woeid}, timeout=15
             )
             if not r.ok:

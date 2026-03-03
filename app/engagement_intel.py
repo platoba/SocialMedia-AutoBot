@@ -12,12 +12,10 @@ Features:
 - Engagement decay analysis
 - Competitor benchmarking
 """
-import math
 import statistics
 from dataclasses import dataclass, field
-from typing import Optional
 from enum import Enum
-from datetime import datetime, timedelta
+from datetime import datetime
 
 
 class ContentType(str, Enum):

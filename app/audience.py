@@ -14,7 +14,6 @@ Features:
 """
 
 import json
-import math
 import sqlite3
 import logging
 from collections import Counter, defaultdict
@@ -22,7 +21,6 @@ from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 from enum import Enum
 from pathlib import Path
-from typing import Optional
 
 logger = logging.getLogger(__name__)
 

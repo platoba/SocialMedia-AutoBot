@@ -1,6 +1,5 @@
 """Tests for app.content module."""
 
-import pytest
 from app.content import (
     suggest_hashtags,
     generate_ideas,

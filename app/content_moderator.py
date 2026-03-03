@@ -8,7 +8,7 @@ Content Moderator — 内容审核引擎
 import re
 from dataclasses import dataclass
 from enum import Enum
-from typing import List, Dict, Optional, Tuple
+from typing import List, Dict, Optional
 
 
 class RiskLevel(Enum):

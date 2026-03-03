@@ -90,7 +90,7 @@ class TikTokClient:
                       "voice_to_text,video_description",
         })
         if not data or "data" not in data:
-            return f"❌ 搜索失败 (需要Research API权限)"
+            return "❌ 搜索失败 (需要Research API权限)"
         videos = data["data"].get("videos", [])
         if not videos:
             return f"🔍 未找到关于 '{query}' 的视频"

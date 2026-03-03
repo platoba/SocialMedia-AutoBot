@@ -1,7 +1,6 @@
 """Content tools: hashtag research, content ideas, caption generator."""
 
 import random
-from typing import Optional
 
 
 # Curated hashtag database by niche
@@ -89,7 +88,7 @@ def suggest_hashtags(niche: str, count: int = 15) -> str:
     # Mix from all
     all_tags = [t for tags in HASHTAG_DB.values() for t in tags]
     selected = random.sample(all_tags, min(count, len(all_tags)))
-    return f"🏷️ 热门标签:\n\n" + " ".join(selected)
+    return "🏷️ 热门标签:\n\n" + " ".join(selected)
 
 
 def generate_ideas(niche: str, count: int = 7) -> str:
